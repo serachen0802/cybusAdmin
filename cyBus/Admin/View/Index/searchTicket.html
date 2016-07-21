@@ -3,13 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>cyBus</title>
-	<!--<link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/default/easyui.css">-->
-	<!--<link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/icon.css">-->
-	<!--<link rel="stylesheet" type="text/css" href="http://www.wistrend.com/prototype/easyui/demo/demo.css">-->
-	<!--<script type="text/javascript" src="http://www.jeasyui.com/easyui/jquery.min.js"></script>-->
-	<!--<script type="text/javascript" src="http://www.wistrend.com/prototype/easyui/jquery.easyui.min.js"></script>-->
-	<!--<script type="text/javascript" src="http://www.jeasyui.com/easyui/locale/easyui-lang-zh_TW.js"></script>-->
-	<!--<script src="//cdn.ckeditor.com/4.4.4/standard/ckeditor.js"></script>-->
 	<link id="easyuiTheme" rel="stylesheet" type="text/css" href="__PUBLIC__/jquery-easyui/themes/{$_COOKIE.easyuiThemeName|default="default"}/easyui.css">
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/jquery-easyui/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/jquery-easyui/themes/icon.css">
@@ -139,7 +132,7 @@
         $(function(){
             //店家資料
             $('#dg').datagrid({
-                // url:'{:U('Index/store')}',
+                url:'{:U('Searchticket/search')}',
                 toolbar:'#toolbar',
                 pagination:true,
                 rownumbers:true,
@@ -147,15 +140,15 @@
                 fitColumns:false,
                 singleSelect:true,
                 frozenColumns:[[
-                    {field:'store_id',title:'班次編號',width:100,halign:'center'},
-                    {field:'store_name',title:'起站',width:100,halign:'center'},
-                    {field:'store_name',title:'迄站',width:100,halign:'center'},
-                    {field:'tax_id',title:'日期',width:150,halign:'center',align:'center'},
-                    {field:'tax_id',title:'時間',width:150,halign:'center',align:'center'},
+                    {field:'did',title:'班次編號',width:100,halign:'center'},
+                    {field:'start',title:'起站',width:100,halign:'center'},
+                    {field:'end',title:'迄站',width:100,halign:'center'},
+                    {field:'date',title:'日期',width:150,halign:'center',align:'center'},
+                    {field:'time',title:'時間',width:150,halign:'center',align:'center'},
                 ]],
                 columns:[[
-                    {field:'last_edit',title:'剩餘座位',width:150 ,halign:'center'},
-                    {field:'remark',title:'備註',width:150,halign:'center'}                                                                       
+                    {field:'seated',title:'剩餘座位',width:500,halign:'center'},
+                                                                               
                 ]]
             });
 

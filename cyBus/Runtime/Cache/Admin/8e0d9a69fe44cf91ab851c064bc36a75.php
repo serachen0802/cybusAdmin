@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <title>cyBus</title>
 	<script src="//cdn.ckeditor.com/4.4.4/standard/ckeditor.js"></script>
-	<link id="easyuiTheme" rel="stylesheet" type="text/css" href="/cyBus2/Public/jquery-easyui/themes/<?php echo ((isset($_COOKIE["easyuiThemeName"]) && ($_COOKIE["easyuiThemeName"] !== ""))?($_COOKIE["easyuiThemeName"]):"default"); ?>/easyui.css">
-    <link rel="stylesheet" type="text/css" href="/cyBus2/Public/jquery-easyui/themes/default/easyui.css">
-    <link rel="stylesheet" type="text/css" href="/cyBus2/Public/jquery-easyui/themes/icon.css">
-    <script type="text/javascript" src="/cyBus2/Public/jquery-easyui/jquery.min.js"></script>
-    <script type="text/javascript" src="/cyBus2/Public/jquery-easyui/jquery.easyui.min.js"></script>
+	<link id="easyuiTheme" rel="stylesheet" type="text/css" href="/cyBusAdmin/Public/jquery-easyui/themes/<?php echo ((isset($_COOKIE["easyuiThemeName"]) && ($_COOKIE["easyuiThemeName"] !== ""))?($_COOKIE["easyuiThemeName"]):"default"); ?>/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/cyBusAdmin/Public/jquery-easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/cyBusAdmin/Public/jquery-easyui/themes/icon.css">
+    <script type="text/javascript" src="/cyBusAdmin/Public/jquery-easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="/cyBusAdmin/Public/jquery-easyui/jquery.easyui.min.js"></script>
 </head>
 <body>
     <script type="text/javascript">

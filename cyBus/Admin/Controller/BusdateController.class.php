@@ -13,25 +13,32 @@ class BusdateController extends Controller
 		$page = $_POST['page'];//第幾頁
 		$pageSize = $_POST['rows'];//顯示幾筆
 		$first = $pageSize*($page- 1); 
-		if($_POST['sid']!=""){
+		
+	    if($_POST['sid']!=""){
 		$con['sid'] = array('eq',$_POST['sid']);
 		$result=$Busdate->where($con)->select();
+		$result1=$Busdate->where($con)->limit($first,$pageSize)->select();
 		$count=count($result);
 		}
 		if($_POST['date']!="") {
 		$con['date']=array('like',$_POST['date']);
 		$result=$Busdate->where($con)->select();
+		$result1=$Busdate->where($con)->limit($first,$pageSize)->select();
 		$count=count($result);
 		}
 		if($_POST['time']!=""){
 		$con['time'] = array('like',$_POST['time']);
 		$result=$Busdate->where($con)->select();
+		$result1=$Busdate->where($con)->limit($first,$pageSize)->select();
 		$count=count($result);
-		}else{
-		$result =$Busdate->limit($first,$pageSize)->select();
+		}
+		else{
+
+		$result1 =$Busdate->limit($first,$pageSize)->select();
 		$count = $Busdate->count();
 		}
-		$data['rows'] = $result;
+		
+		$data['rows'] = $result1;
 		$data['total'] = $count;//將總筆數存進資料
 
 		$this->ajaxReturn($data);
@@ -46,13 +53,33 @@ class BusdateController extends Controller
         $Busdate=M('date');
         $data = $Busdate->create();
         $data['last_edit']=date('Y-m-d H:i:s');
-        $data['last_editors'] = 'admin';
-        // $Busdate->add($data);
+        $data['last_editor'] = 'admin';
+        $Busdate->add($data);
         $this->ajaxReturn($data);
   		}else{
-  		    $this->ajaxReturn("123");
+  		    $this->ajaxReturn("nono");
   		}
-  	 	
     }
+    public function edit(){
+		$Busdate=M('date');
+		$id['did']=$_GET['id'];
+		
+		$data = $Busdate->create();
+					
+		$Busdate-> where($id)-> save($data);
+		$this-> ajaxReturn($data);
+	  }
+	  
+  public function remove(){
+  		$Busdate=M('date');
+  		$did['did']=$_POST['id'];
+  		$result = $Busdate-> where($did)-> delete();
+			//傳值
+			if($result){
+				$this->ajaxReturn(1);
+			} else {
+				$this->ajaxReturn(0);
+			}
+		}
 }
 ?>

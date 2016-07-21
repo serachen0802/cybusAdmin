@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/jquery-easyui/themes/icon.css">
     <script type="text/javascript" src="__PUBLIC__/jquery-easyui/jquery.min.js"></script>
     <script type="text/javascript" src="__PUBLIC__/jquery-easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/jquery-easyui/locale/easyui-lang-zh_TW.js"></script>
 </head>
 <body>
     <script type="text/javascript">
@@ -21,11 +22,11 @@
         //修改
         function editUser(){
             var row = $('#dg').datagrid('getSelected');
-            console.log(row.store_id);
+            console.log(row.did);
             if (row){
                 $('#dlg').dialog('open').dialog('setTitle','編輯班次');
                 $('#fm').form('load',row);
-                // url = '{:U('Index/edit')}?id=' + row.store_id;
+                url = '{:U('Busdate/edit')}?id=' + row.did;
             }
         }
         function saveUser(){
@@ -49,38 +50,37 @@
                 }
             });
         }
-        // //刪除資料
-        // function destroyUser(){
-        //     var row = $('#dg').datagrid('getSelected');
-        //     if (row){
-        //         $.messager.confirm('Confirm','確定要刪除這筆資料嗎？',function(r){
-        //             if (r){
-        //                 $.post('{:U('')}',{id:row.store_id},function(result){
-        //                     console.log(result);
-        //                     if (result == 1){
-        //                         $('#dg').datagrid('reload'); 
-        //                           // reload the user data
-        //                     } else {
+        //刪除資料
+        function destroyUser(){
+            var row = $('#dg').datagrid('getSelected');
+            if (row){
+                $.messager.confirm('Confirm','確定要刪除這筆資料嗎？',function(r){
+                    if (r){
+                        $.post('{:U('Busdate/remove')}',{id:row.did},function(result){
+                            console.log(result);
+                            if (result == 1){
+                                $('#dg').datagrid('reload'); 
+                                  // reload the user data
+                            } else {
 
-        //                         $.messager.show({    // show error message
-        //                             title: 'Error',
-        //                             msg: result//.errorMsg
-        //                         });
-        //                     }
-        //                 },'json');
-        //             }
-        //         });
-        //     }
-        // }
+                                $.messager.show({    // show error message
+                                    title: 'Error',
+                                    msg: result//.errorMsg
+                                });
+                            }
+                        },'json');
+                    }
+                });
+            }
+        }
 
         //搜尋
-        function searchf(){
-            $('#dg').datagrid('load',{
+         function searchm(){
+              $('#dg').datagrid('load',{
                 sid:$('input[name="sid"]').val(),
-                date:'%'+$.trim($('input[name="date"]').val())+'%',
-                time:$('input[name="time"]').val(),
+                date:'%'+$.trim($('input[name="date"]').val()) + '%',
+                time:'%'+$.trim($('input[name="time"]').val())+'%',
             });
-
         }
         //清除
         function clf(){
@@ -147,11 +147,59 @@
                 // ]],
                 // columns:[[
                     {field:'last_edit',title:'最後修改時間',width:150 ,halign:'center'},
-                    {field:'last_editors',title:'最後修改者',width:120 ,halign:'center'},
+                    {field:'last_editor',title:'最後修改者',width:120 ,halign:'center'},
                     {field:'remark',title:'備註',width:120,halign:'center'}                                                                       
                 ]]
             });
         })
+        // <script language="javascript">
+                    
+    $(document).ready(function(){
+      $("#datebox1").datebox({
+         
+        formatter:function(date){
+          var y=date.getFullYear();
+          var m=date.getMonth()+1;
+          var d=date.getDate();
+          return y+'-'+(m<10?('0'+m):m)+'-'+(d<10?('0'+d):d);        
+          },
+        parser:function(s){
+          var t=Date.parse(s);
+          if (!isNaN(t)) {return new Date(t);}
+          else {return new Date();}
+          }      
+        });
+         var c=$("#datebox1").datebox("calendar");
+      c.calendar({
+        validator:function(date){
+                    var now=new Date();
+                    var Y=now.getFullYear();
+                    var M=now.getMonth();
+                    var D=now.getDate();
+                    var start=new Date(Y, M, D);
+                    
+                    var selectable=date >= start;
+                    return selectable;
+                    }     
+        });
+      });
+    $(document).ready(function(){
+          $("#datebox2").datebox({
+             
+            formatter:function(date){
+              var y=date.getFullYear();
+              var m=date.getMonth()+1;
+              var d=date.getDate();
+              return y+'-'+(m<10?('0'+m):m)+'-'+(d<10?('0'+d):d);        
+              },
+            parser:function(s){
+              var t=Date.parse(s);
+              if (!isNaN(t)) {return new Date(t);}
+              else {return new Date();}
+              }      
+            });
+          });
+                        
 
     </script>
 
@@ -182,7 +230,8 @@
         		<tr class="row">
         			<td class="row_title"><label>日期：</label></td>
         			<td class="row_content">
-		                <input name="date" style="width:400px;" class="easyui-datebox">
+		                <input name="date" style="width:400px;" class="easyui-datebox" id="datebox1">
+		                
 					</td>
         		</tr>
                 <tr class="row">
@@ -211,7 +260,7 @@
    <div id="div_eastpanal" data-options="region:'east',title:'搜尋條件',split:true,collapsed:true" style="width:340px;">
     	<div style="padding:10px 20px">
         	<div style="margin-bottom:10px;">
-	        	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" onclick="searchf()">搜尋</a>
+	        	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" onclick="searchm()">搜尋</a>
 	        	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clf()">清除</a>
 	    	</div>
 	    	<form id="shfm" method="post" novalidate　style="padding-top:5px;">
@@ -225,7 +274,7 @@
                 <tr>						            
                     <td class="row_title"><label>日期：</label></td>
                     <td class="row_content">						           
-                        <input name="date" style="width:175px;" class="easyui-validatebox textbox">
+                        <input name="date" style="width:175px;" class="easyui-datebox" id="datebox2">
                     </td>
                 </tr>  
 
@@ -234,7 +283,13 @@
                     <td class="row_content">						           
                         <input name="time" style="width:175px;" class="easyui-validatebox textbox">
                     </td>
-                </tr>           	    		
+                </tr>
+                <tr><td class="row_title"></td>
+                    <td class="row_content"><label>*輸入時間格式為24小時制</label>
+                    </tr>
+                <tr><td class="row_title"></td>
+                    <td class="row_content"><label>ex:  08:00 or 18:00</label>
+                    </tr>
         	</table>
 	    	</form>
 	</div>
