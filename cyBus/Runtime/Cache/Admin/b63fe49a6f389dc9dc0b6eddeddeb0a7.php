@@ -49,36 +49,13 @@
                 }
             });
         }
-        // //刪除資料
-        // function destroyUser(){
-        //     var row = $('#dg').datagrid('getSelected');
-        //     if (row){
-        //         $.messager.confirm('Confirm','確定要刪除這筆資料嗎？',function(r){
-        //             if (r){
-        //                 $.post('<?php echo U('');?>',{id:row.store_id},function(result){
-        //                     console.log(result);
-        //                     if (result == 1){
-        //                         $('#dg').datagrid('reload'); 
-        //                           // reload the user data
-        //                     } else {
-
-        //                         $.messager.show({    // show error message
-        //                             title: 'Error',
-        //                             msg: result//.errorMsg
-        //                         });
-        //                     }
-        //                 },'json');
-        //             }
-        //         });
-        //     }
-        // }
-
         //搜尋
         function searchf(){
             $('#dg').datagrid('load',{
-                search_name:'%'+$.trim($('input[name="search_name"]').val()) + '%',
-                search_number:$('input[name="search_number"]').val(),
-                search_address:'%'+$.trim($('input[name="search_address"]').val())+'%',
+                did:$('input[name="did"]').val(),
+                start:$('input[name="start"]').val(),
+                end:$('input[name="end"]').val(),
+                date:$('input[name="date"]').val(),
             });
 
         }
@@ -86,12 +63,8 @@
         function clf(){
             $('#shfm').form('clear');
              $('#dg').datagrid('load',{
-             //    search_name:"";
-             //    search_number:"";
-             //    search_address:"";
              });
         }
-
 
         //圖片格式
         function formatPicture(val,row){
@@ -113,20 +86,6 @@
         //右側關閉時，清空查詢欄位
 		function searchopen(){
 			$('#cc').layout('expand','east');
-
-
-
-
-/* 	        $('#div_eastpanal').panel();
-	        $('#div_eastpanal').panel({
-	            onCollapse: function () {
-	                SearchClear();
-	                Query();
-	            },
-	            onExpand: function () {
-
-	            }
-	        }); */	
 		}
 
         $(function(){
@@ -151,15 +110,24 @@
                                                                                
                 ]]
             });
-
-            // Replace the <textarea id="editor1"> with a CKEditor
-            // instance, using default configuration.
-            // CKEDITOR.replace( 'editor1' );
-            // $('#fb').filebox({
-            //     buttonText: '選擇檔案'
-            // });            
         })
-
+        //設定搜尋欄日期選擇器的格式為yyyy-mm-dd
+         $(document).ready(function(){
+            $("#datebox2").datebox({
+            formatter:function(date){
+              var y=date.getFullYear();
+              var m=date.getMonth()+1;
+              var d=date.getDate();
+              return y+'-'+(m<10?('0'+m):m)+'-'+(d<10?('0'+d):d);
+                },
+            parser:function(s){
+              var t=Date.parse(s);
+              if (!isNaN(t)) {return new Date(t);}
+              else {return new Date();
+              }
+              }      
+            });
+          });
 
     </script>
 
@@ -174,9 +142,6 @@
   	    <!--<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">編輯</a>-->
   	    <!--<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">刪除</a>-->
   	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="searchopen()">查詢</a>
-  	    <!--<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="">匯入</a>-->
-  	    <!-- <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-redo" plain="true" onclick="">匯出</a> -->
-  	    <!--<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="">匯入範例下載</a>-->
     </div> 
 <!-- 編輯popup視窗 -->
     <div id="dlg" class="easyui-dialog" style="width:880px;height:450px;padding:10px 20px" closed="true" buttons="#dlg-buttons" modal="true" fit="true">
@@ -227,29 +192,30 @@
 	    	<form id="shfm" method="post" novalidate　style="padding-top:5px;">
 	        <table>
 	            <tr>						            
-	                	<td class="row_title"><label>起站：</label></td>
+	                	<td class="row_title"><label>班次編號：</label></td>
 	                	<td class="row_content">						           
-	                		<input name="search_address" style="width:175px;" class="easyui-validatebox textbox">
-						</td>
-	            </tr>
-	            <tr>						            
-	                	<td class="row_title"><label>迄站：</label></td>
-	                	<td class="row_content">						           
-	                		<input name="search_address" style="width:175px;" class="easyui-validatebox textbox">
-						</td>
-	            </tr>
-	            <tr>						            
-	                	<td class="row_title"><label>日期：</label></td>
-	                	<td class="row_content">						           
-	                		<input name="search_name" style="width:175px;" class="easyui-validatebox textbox">
+	                		<input name="did" style="width:175px;" class="easyui-validatebox textbox">
 						</td>
 	            </tr>  
-	            <tr>						            
-	                	<td class="row_title"><label>時間：</label></td>
-	                	<td class="row_content">						           
-	                		<input name="search_number" style="width:175px;" class="easyui-validatebox textbox">
-						</td>
-	            </tr>  
+	     <!--       <tr>						            -->
+	     <!--           	<td class="row_title"><label>起站：</label></td>-->
+	     <!--           	<td class="row_content">						           -->
+	     <!--           		<input name="start" style="width:175px;" class="easyui-validatebox textbox">-->
+						<!--</td>-->
+	     <!--       </tr>-->
+	     <!--       <tr>						            -->
+	     <!--           	<td class="row_title"><label>迄站：</label></td>-->
+	     <!--           	<td class="row_content">						           -->
+	     <!--           		<input name="end" style="width:175px;" class="easyui-validatebox textbox">-->
+						<!--</td>-->
+	     <!--       </tr>-->
+	     <!--       <tr>						            -->
+	     <!--           	<td class="row_title"><label>日期：</label></td>-->
+	     <!--           	<td class="row_content">						           -->
+	     <!--           		<input name="date" style="width:175px;" class="easyui-datebox" id="datebox2">-->
+						<!--</td>-->
+	     <!--       </tr>  -->
+	            
 	     
 	           	    		
         		</table>

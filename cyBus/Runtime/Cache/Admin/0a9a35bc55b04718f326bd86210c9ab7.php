@@ -3,18 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>cyBus</title>
-	<!--<link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/default/easyui.css">-->
-	<!--<link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/icon.css">-->
-	<!--<link rel="stylesheet" type="text/css" href="http://www.wistrend.com/prototype/easyui/demo/demo.css">-->
-	<!--<script type="text/javascript" src="http://www.jeasyui.com/easyui/jquery.min.js"></script>-->
-	<!--<script type="text/javascript" src="http://www.wistrend.com/prototype/easyui/jquery.easyui.min.js"></script>-->
-	<!--<script type="text/javascript" src="http://www.jeasyui.com/easyui/locale/easyui-lang-zh_TW.js"></script>-->
-	<!--<script src="//cdn.ckeditor.com/4.4.4/standard/ckeditor.js"></script>-->
 	<link id="easyuiTheme" rel="stylesheet" type="text/css" href="/cyBusAdmin/Public/jquery-easyui/themes/<?php echo ((isset($_COOKIE["easyuiThemeName"]) && ($_COOKIE["easyuiThemeName"] !== ""))?($_COOKIE["easyuiThemeName"]):"default"); ?>/easyui.css">
     <link rel="stylesheet" type="text/css" href="/cyBusAdmin/Public/jquery-easyui/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="/cyBusAdmin/Public/jquery-easyui/themes/icon.css">
     <script type="text/javascript" src="/cyBusAdmin/Public/jquery-easyui/jquery.min.js"></script>
     <script type="text/javascript" src="/cyBusAdmin/Public/jquery-easyui/jquery.easyui.min.js"></script>
+    <script src="/cyBusAdmin/Public/ckeditor/ckeditor.js"></script>
 </head>
 <body>
     <script type="text/javascript">
@@ -23,16 +17,16 @@
         function newUser(){
             $('#dlg').dialog('open').dialog('setTitle','新增最新消息');
             $('#fm').form('clear');
-            // url='<?php echo U('Index/inse');?>';
+            url='<?php echo U('News/insert');?>';
         }
         //修改
         function editUser(){
             var row = $('#dg').datagrid('getSelected');
-            console.log(row.store_id);
+            console.log(row.nid);
             if (row){
                 $('#dlg').dialog('open').dialog('setTitle','編輯');
                 $('#fm').form('load',row);
-                // url = '<?php echo U('Index/edit');?>?id=' + row.store_id;
+                url = '<?php echo U('News/edit');?>?id=' + row.nid;
             }
         }
         function saveUser(){
@@ -56,36 +50,36 @@
                 }
             });
         }
-        // //刪除資料
-        // function destroyUser(){
-        //     var row = $('#dg').datagrid('getSelected');
-        //     if (row){
-        //         $.messager.confirm('Confirm','確定要刪除這筆資料嗎？',function(r){
-        //             if (r){
-        //                 $.post('<?php echo U('');?>',{id:row.store_id},function(result){
-        //                     console.log(result);
-        //                     if (result == 1){
-        //                         $('#dg').datagrid('reload'); 
-        //                           // reload the user data
-        //                     } else {
+        //刪除資料
+        function destroyUser(){
+            var row = $('#dg').datagrid('getSelected');
+            if (row){
+                $.messager.confirm('Confirm','確定要刪除這筆資料嗎？',function(r){
+                    if (r){
+                        $.post('<?php echo U('News/remove');?>',{id:row.nid},function(result){
+                            console.log(result);
+                            if (result == 1){
+                                $('#dg').datagrid('reload'); 
+                                  // reload the user data
+                            } else {
 
-        //                         $.messager.show({    // show error message
-        //                             title: 'Error',
-        //                             msg: result//.errorMsg
-        //                         });
-        //                     }
-        //                 },'json');
-        //             }
-        //         });
-        //     }
-        // }
+                                $.messager.show({    // show error message
+                                    title: 'Error',
+                                    msg: result//.errorMsg
+                                });
+                            }
+                        },'json');
+                    }
+                });
+            }
+        }
 
         //搜尋
         function searchf(){
             $('#dg').datagrid('load',{
-                search_name:'%'+$.trim($('input[name="search_name"]').val()) + '%',
-                search_number:$('input[name="search_number"]').val(),
-                search_address:'%'+$.trim($('input[name="search_address"]').val())+'%',
+                nid:$('input[name="nid"]').val(),
+                date:'%'+$.trim($('input[name="date"]').val()) + '%',
+                newsed:'%'+$.trim($('input[name="newsed"]').val())+'%',
             });
 
         }
@@ -93,21 +87,8 @@
         function clf(){
             $('#shfm').form('clear');
              $('#dg').datagrid('load',{
-             //    search_name:"";
-             //    search_number:"";
-             //    search_address:"";
              });
         }
-
-
-        //圖片格式
-        function formatPicture(val,row){
-            if (val!=""){
-                return '<a href="images/'+ val + '" target="_blank"><img src="images/' + val + '" style="max-width:70px; max-height:70px;"></a>';
-            }else{
-                return '無'
-            }
-        }  
 
         //日期格式調整
         function myformatter(date){
@@ -120,26 +101,23 @@
         //右側關閉時，清空查詢欄位
 		function searchopen(){
 			$('#cc').layout('expand','east');
-
-
-
-
-/* 	        $('#div_eastpanal').panel();
-	        $('#div_eastpanal').panel({
-	            onCollapse: function () {
-	                SearchClear();
-	                Query();
-	            },
-	            onExpand: function () {
-
-	            }
-	        }); */	
 		}
+		
+        // $(function () {
+        // var editor =
+        // CKEDITOR.replace('body',
+        // {
+        //     //允許所有使用者輸入的內容
+        //     allowedContent: true;
+        // });
+ 
+        //  });
+
 
         $(function(){
             //店家資料
             $('#dg').datagrid({
-                // url:'<?php echo U('Index/store');?>',
+                url:'<?php echo U('news/news');?>',
                 toolbar:'#toolbar',
                 pagination:true,
                 rownumbers:true,
@@ -147,14 +125,32 @@
                 fitColumns:false,
                 singleSelect:true,
                 frozenColumns:[[
-                    {field:'id',title:'編號',width:100,halign:'center'},
-                    {field:'store_id',title:'發佈日期',width:100,halign:'center'},
-                    {field:'store_name',title:'最新消息',width:500,halign:'center'},
-                    {field:'tax_id',title:'發佈人',width:100,halign:'center',align:'center'},
+                    {field:'nid',title:'編號',width:70,halign:'center',align:'center'},
+                    {field:'date',title:'發佈日期',width:100,halign:'center',align:'center'},
+                    {field:'title',title:'標題',width:150,halign:'center'},
+                    {field:'news',title:'最新消息',width:550,halign:'center'},
+                    {field:'newsed',title:'發佈人',width:100,halign:'center',align:'center'},
                                                                    
                 ]]
             });
         })
+        //設定搜尋欄日期選擇器的格式為yyyy-mm-dd
+         $(document).ready(function(){
+          $("#datebox2").datebox({
+             
+            formatter:function(date){
+              var y=date.getFullYear();
+              var m=date.getMonth()+1;
+              var d=date.getDate();
+              return y+'-'+(m<10?('0'+m):m)+'-'+(d<10?('0'+d):d);        
+              },
+            parser:function(s){
+              var t=Date.parse(s);
+              if (!isNaN(t)) {return new Date(t);}
+              else {return new Date();}
+              }      
+            });
+          });
     </script>
 
 <div id="cc" class="easyui-layout" data-options="fit:true">
@@ -168,38 +164,27 @@
   	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">編輯</a>
   	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">刪除</a>
   	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="searchopen()">查詢</a>
-  	    <!--<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="">匯入</a>-->
-  	    <!-- <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-redo" plain="true" onclick="">匯出</a> -->
-  	    <!--<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="">匯入範例下載</a>-->
     </div> 
 <!-- 編輯popup視窗 -->
     <div id="dlg" class="easyui-dialog" style="width:880px;height:450px;padding:10px 20px" closed="true" buttons="#dlg-buttons" modal="true" fit="true">
-        <!-- <div class="ftitle">資料編輯修改</div> -->
+
 <!-- 新增/編輯form -->
-        <form id="fm" method="post" novalidate>
+        <form id="fm" method="post" novalidate >
         	<table>
-        		<tr class="row">
-        			<td class="row_title"><label>編號：</label></td>
-        			<td class="row_content">
-		                <input name="store_name" style="width:400px;" class="easyui-validatebox textbox" required>
-					</td>
-        		</tr>
-        		<tr class="row">
-        			<td class="row_title"><label>發佈日期：</label></td>
-        			<td class="row_content">
-		                <input name="tax_id" style="width:400px;" class="easyui-validatebox textbox">
-					</td>
-        		</tr>
                 <tr class="row">
-                    <td class="row_title"><label>最新消息：</label></td>
+                    <td class="row_title"><label>標題：</label></td>
                     <td class="row_content">
-                        <input name="branch_id" style="width:400px;" class="easyui-validatebox textbox">
+                        <input name="title" style="width:600px;" class="easyui-validatebox textbox">
                     </td>
                 </tr>
         		<tr class="row">
-        			<td class="row_title"><label>發佈人：</label></td>
+        			<td class="row_title"><label>最新消息：</label></td>
         			<td class="row_content">
-		                <input name="remark" class="easyui-textbox textbox" value="" data-options="multiline:true" style="width:400px;height:75px">
+		                <!--<input name="news" class="easyui-textbox textbox" value="" data-options="multiline:true" style="width:400px;height:400px">-->
+                        <textarea name="news" id="news" class="ckeditor"></textarea>
+                        <script>
+                        CKEDITOR.replace( 'news', {uiColor:"#7de3e3"});//toolskk
+                        </script>
 					</td>
         		</tr>       		 		        		        		       		         		
         	</table>
@@ -219,21 +204,27 @@
 	        	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clf()">清除</a>
 	    	</div>
 	    	<form id="shfm" method="post" novalidate　style="padding-top:5px;">
-	        <table>
-	         <tr>						            
-	                	<td class="row_title"><label>發佈日期：</label></td>
-	                	<td class="row_content">						           
-	                		<input name="search_name" style="width:175px;" class="easyui-validatebox textbox">
-						</td>
-	            </tr>  
-	          <tr>						            
-	                	<td class="row_title"><label>發佈人：</label></td>
-	                	<td class="row_content">						           
-	                		<input name="search_number" style="width:175px;" class="easyui-validatebox textbox">
-						</td>
-	            </tr> 
-        		</table>
-	    	</form>
+    <table>
+        <tr>						            
+            <td class="row_title"><label>標號：</label></td>
+            <td class="row_content">						           
+                <input name="nid" style="width:175px;" class="easyui-validatebox textbox">
+            </td>
+        </tr>
+        <tr>						            
+            <td class="row_title"><label>發佈日期：</label></td>
+            <td class="row_content">						           
+                <input name="date" style="width:175px;" class="easyui-datebox" id="datebox2">
+            </td>
+        </tr>  
+        <tr>						            
+            <td class="row_title"><label>發佈人：</label></td>
+            <td class="row_content">						           
+                <input name="newsed" style="width:175px;" class="easyui-validatebox textbox">
+            </td>
+        </tr> 
+    </table>
+	</form>
 	</div>
 </div>
 

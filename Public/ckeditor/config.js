@@ -21,9 +21,11 @@ CKEDITOR.editorConfig = function( config ) {
 		'/',
 		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
 		{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+		{ name: 'TextColor'},
 		{ name: 'styles' },
 		{ name: 'colors' },
 		{ name: 'about' }
+		
 	];
 
 	// Remove some buttons provided by the standard plugins, which are
@@ -35,4 +37,12 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
+	
 };
+// 'Styles'：樣式
+// 'Format'：格式
+// 'Font'：字體
+// 'FontSize'：大小
+
+// 'TextColor'：文字顏色
+// 'BGColor'：背景顏色

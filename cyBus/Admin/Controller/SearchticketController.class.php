@@ -9,32 +9,41 @@ class SearchticketController extends Controller
 {
     
     public function search(){
-        $order=M('Corder');
-        $data=$order->query(' SELECT *, (SELECT GROUP_CONCAT(seat) FROM bus_corder where 
+        $order = M('Corder');
+
+		// 篩選did sql
+		if($_POST['did']!=""){
+            $searchdid = "WHERE did = ".$_POST['did'];
+		}
+// 		if($_POST['start']){
+// 		    $searchstart = "WHERE start = ".$_POST['start'];
+// 		}
+// 		if($_POST['end']){
+// 		    $searchend = "WHERE end = ".$_POST['end'];
+// 		}
+// 		if($_POST['date']){
+// 		    $searchdate = "WHERE date = ".$_POST['date'];
+// 		}
+        
+        $db = $order->query(' SELECT *, (SELECT GROUP_CONCAT(seat) FROM bus_corder where 
         sid=bus_date.sid AND did=bus_date.did) AS Seated FROM bus_date
-        INNER JOIN bus_schedule ON bus_date.sid=bus_schedule.sid ');
- 
-        //   for($i=1;$i<=30;$i++){
-        //     $arr[]="$i";
-        //   }
-        //     for($k=0;$k<=count($data);$k++){
-        //     // $h=explode(",",$data[0]['seated']);//陣列
-        //     $r=$data[$k]['seated'];
-        //     $arrseat=explode("," , $r);
-        //     }
-            
-        //     for( $ii=0; $ii <30; $ii++){
-        //     if(! strcmp($arr[$ii],$arrseat) ) unset($arr[$ii]);
-        //     // return $arr;
-        //         }
-            
-            
-            // $x=var_dump($data[0]['seated']);
-            
-            // 每筆資料迴圈
-            for ($c = 0; $c < count($data); $c++){
+        INNER JOIN bus_schedule ON bus_date.sid=bus_schedule.sid '. $searchdid.$searchstart.$searchend.$searchdate); 
+        
+        $page = $_POST['page'];//第幾頁
+		$pageSize = $_POST['rows'];//顯示幾筆
+		$first = $pageSize*($page- 1); 
+		
+		// ThinkPHP 塞選陣列前幾筆
+        // $data = $data->limit($first,$pageSize);
+        
+        // 原生 array_slice(陣列,從第幾筆開始,取幾筆)
+        $result = array_slice($db, $first, $pageSize);
+        $count = count($db);
+
+        // 每筆資料迴圈
+        for ($c = 0; $c < count($result); $c++){
                 // 將字串轉陣列
-                $seatedArray = explode(",",$data[$c]['seated']);
+                $seatedArray = explode(",",$result[$c]['seated']);
                 // 宣告空陣列
                 $unSeatedArray = array();
                 
@@ -47,13 +56,14 @@ class SearchticketController extends Controller
                     }
                 }
                 //將陣列轉回字串
-                $data[$c]['seated'] = implode(",", $unSeatedArray);
-            } 
-            
-            $this->ajaxReturn($data);
-            
-            
+                $result[$c]['seated'] = implode(",", $unSeatedArray);
+        } 
+        
+        
+        $final['rows'] = $result;
+    	$final['total'] = $count; //將總筆數存進資料
            
+        $this->ajaxReturn($final);
     }
     
 }

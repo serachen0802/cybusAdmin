@@ -32,7 +32,6 @@ class BusScheduleController extends Controller
 		$result=$BusSchedule->where($con)->select();
 		$count=count($result);
 		}else{
-
 		$result =$BusSchedule->limit($first,$pageSize)->select();
 		$count = $BusSchedule->count();
 		}
