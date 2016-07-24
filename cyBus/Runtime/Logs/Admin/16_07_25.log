@@ -1,0 +1,317 @@
+[ 2016-07-25T00:05:32+08:00 ] 10.240.0.33 /cyBusAdmin/index.php/Admin/Index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000415s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000292s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000376s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000091s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000170s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /home/ubuntu/workspace/cyBusAdmin/cyBus/Runtime/Cache/Admin/a8155623ab58d038d34515cc766f22a7.php 第 1 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.005976s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006072s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000273s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000338s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001873s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001946s ]
+
+[ 2016-07-25T00:05:35+08:00 ] 10.240.0.212 /cyBusAdmin/index.php/Admin/Index/salesTicket.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000362s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000415s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000530s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000075s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000168s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006281s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006375s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000295s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000365s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000249s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000384s ]
+
+[ 2016-07-25T00:05:36+08:00 ] 10.240.1.14 /cyBusAdmin/index.php/Admin/salesticket/sales.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000192s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000088s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000156s ]
+SQL: SHOW COLUMNS FROM `bus_corder` [ RunTime:0.0017s ]
+NOTIC: [8] Undefined index: clientId /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SalesticketController.class.php 第 16 行.
+NOTIC: [8] Undefined index: clientPhone /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SalesticketController.class.php 第 22 行.
+NOTIC: [8] Undefined index: type /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SalesticketController.class.php 第 28 行.
+NOTIC: [8] Undefined index: ticrand /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SalesticketController.class.php 第 34 行.
+SQL: SELECT * FROM `bus_corder` LIMIT 0,10   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bus_corder` LIMIT 1   [ RunTime:0.0005s ]
+
+[ 2016-07-25T00:05:36+08:00 ] 10.240.1.14 /cyBusAdmin/index.php/Admin/salesticket/sales.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000180s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000093s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000165s ]
+SQL: SHOW COLUMNS FROM `bus_corder` [ RunTime:0.0014s ]
+NOTIC: [8] Undefined index: clientId /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SalesticketController.class.php 第 16 行.
+NOTIC: [8] Undefined index: clientPhone /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SalesticketController.class.php 第 22 行.
+NOTIC: [8] Undefined index: type /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SalesticketController.class.php 第 28 行.
+NOTIC: [8] Undefined index: ticrand /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SalesticketController.class.php 第 34 行.
+SQL: SELECT * FROM `bus_corder` LIMIT 70,10   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bus_corder` LIMIT 1   [ RunTime:0.0001s ]
+
+[ 2016-07-25T00:07:16+08:00 ] 10.240.1.14 /cyBusAdmin/index.php/Admin/Index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000378s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000310s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000393s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000086s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000167s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /home/ubuntu/workspace/cyBusAdmin/cyBus/Runtime/Cache/Admin/a8155623ab58d038d34515cc766f22a7.php 第 1 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006671s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006784s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000285s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000354s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000289s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000371s ]
+
+[ 2016-07-25T00:07:18+08:00 ] 10.240.0.230 /cyBusAdmin/index.php/Admin/Index/searchTicket.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000196s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000098s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000177s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000058s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000136s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.003767s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.003862s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000092s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000165s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000107s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000179s ]
+
+[ 2016-07-25T00:07:19+08:00 ] 10.240.0.240 /cyBusAdmin/index.php/Admin/Searchticket/search.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000155s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000075s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000149s ]
+SQL: SHOW COLUMNS FROM `bus_corder` [ RunTime:0.0014s ]
+NOTIC: [8] Undefined index: did /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SearchticketController.class.php 第 15 行.
+NOTIC: [8] Undefined variable: searchdid /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SearchticketController.class.php 第 20 行.
+NOTIC: [8] Undefined variable: searchstart /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SearchticketController.class.php 第 20 行.
+NOTIC: [8] Undefined variable: searchend /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SearchticketController.class.php 第 20 行.
+NOTIC: [8] Undefined variable: searchdate /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SearchticketController.class.php 第 20 行.
+SQL:  SELECT *, (SELECT GROUP_CONCAT(seat) FROM bus_corder where 
+        sid=bus_date.sid AND did=bus_date.did) AS Seated FROM bus_date
+        INNER JOIN bus_schedule ON bus_date.sid=bus_schedule.sid  [ RunTime:0.0477s ]
+
+[ 2016-07-25T00:07:21+08:00 ] 10.240.1.16 /cyBusAdmin/index.php/Admin/Searchticket/search.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000334s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000267s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000342s ]
+SQL: SHOW COLUMNS FROM `bus_corder` [ RunTime:0.0012s ]
+NOTIC: [8] Undefined index: did /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SearchticketController.class.php 第 15 行.
+NOTIC: [8] Undefined variable: searchdid /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SearchticketController.class.php 第 20 行.
+NOTIC: [8] Undefined variable: searchstart /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SearchticketController.class.php 第 20 行.
+NOTIC: [8] Undefined variable: searchend /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SearchticketController.class.php 第 20 行.
+NOTIC: [8] Undefined variable: searchdate /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SearchticketController.class.php 第 20 行.
+SQL:  SELECT *, (SELECT GROUP_CONCAT(seat) FROM bus_corder where 
+        sid=bus_date.sid AND did=bus_date.did) AS Seated FROM bus_date
+        INNER JOIN bus_schedule ON bus_date.sid=bus_schedule.sid  [ RunTime:0.0016s ]
+
+[ 2016-07-25T00:07:23+08:00 ] 10.240.1.14 /cyBusAdmin/index.php/Admin/Index/salesTicket.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000152s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000094s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000191s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000093s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000172s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.005973s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006069s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000244s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000315s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000258s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000340s ]
+
+[ 2016-07-25T00:07:23+08:00 ] 10.240.1.16 /cyBusAdmin/index.php/Admin/salesticket/sales.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000186s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000085s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000215s ]
+SQL: SHOW COLUMNS FROM `bus_corder` [ RunTime:0.0013s ]
+NOTIC: [8] Undefined index: clientId /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SalesticketController.class.php 第 16 行.
+NOTIC: [8] Undefined index: clientPhone /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SalesticketController.class.php 第 22 行.
+NOTIC: [8] Undefined index: type /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SalesticketController.class.php 第 28 行.
+NOTIC: [8] Undefined index: ticrand /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SalesticketController.class.php 第 34 行.
+SQL: SELECT * FROM `bus_corder` LIMIT 0,10   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bus_corder` LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2016-07-25T00:07:24+08:00 ] 10.240.1.14 /cyBusAdmin/index.php/Admin/salesticket/sales.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000349s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000302s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000373s ]
+SQL: SHOW COLUMNS FROM `bus_corder` [ RunTime:0.0014s ]
+NOTIC: [8] Undefined index: clientId /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SalesticketController.class.php 第 16 行.
+NOTIC: [8] Undefined index: clientPhone /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SalesticketController.class.php 第 22 行.
+NOTIC: [8] Undefined index: type /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SalesticketController.class.php 第 28 行.
+NOTIC: [8] Undefined index: ticrand /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SalesticketController.class.php 第 34 行.
+SQL: SELECT * FROM `bus_corder` LIMIT 70,10   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bus_corder` LIMIT 1   [ RunTime:0.0001s ]
+
+[ 2016-07-25T00:08:26+08:00 ] 10.240.1.12 /cyBusAdmin/index.php/Admin/Index/salesTicket.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000599s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000381s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000510s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000087s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000170s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007129s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007247s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000232s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000300s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000264s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000340s ]
+
+[ 2016-07-25T00:08:26+08:00 ] 10.240.0.214 /cyBusAdmin/index.php/Admin/salesticket/sales.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000195s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000098s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000168s ]
+SQL: SHOW COLUMNS FROM `bus_corder` [ RunTime:0.0016s ]
+NOTIC: [8] Undefined index: clientId /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SalesticketController.class.php 第 16 行.
+NOTIC: [8] Undefined index: clientPhone /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SalesticketController.class.php 第 22 行.
+NOTIC: [8] Undefined index: type /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SalesticketController.class.php 第 28 行.
+NOTIC: [8] Undefined index: ticrand /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SalesticketController.class.php 第 34 行.
+SQL: SELECT * FROM `bus_corder` LIMIT 0,10   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bus_corder` LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2016-07-25T00:08:30+08:00 ] 10.240.1.14 /cyBusAdmin/index.php/Admin/salesticket/sales.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000346s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000258s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000328s ]
+SQL: SHOW COLUMNS FROM `bus_corder` [ RunTime:0.0013s ]
+NOTIC: [8] Undefined index: clientId /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SalesticketController.class.php 第 16 行.
+NOTIC: [8] Undefined index: clientPhone /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SalesticketController.class.php 第 22 行.
+NOTIC: [8] Undefined index: type /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SalesticketController.class.php 第 28 行.
+NOTIC: [8] Undefined index: ticrand /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SalesticketController.class.php 第 34 行.
+SQL: SELECT * FROM `bus_corder` LIMIT 70,10   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bus_corder` LIMIT 1   [ RunTime:0.0001s ]
+
+[ 2016-07-25T00:10:06+08:00 ] 10.240.0.230 /cyBusAdmin/index.php/Admin/Index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000385s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000344s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000432s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000092s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000169s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /home/ubuntu/workspace/cyBusAdmin/cyBus/Runtime/Cache/Admin/a8155623ab58d038d34515cc766f22a7.php 第 1 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006301s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006376s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000280s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000348s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000302s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000374s ]
+
+[ 2016-07-25T00:10:09+08:00 ] 10.240.0.213 /cyBusAdmin/index.php/Admin/Index/salesTicket.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000319s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000272s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000351s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000098s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000175s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006185s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006308s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000253s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000336s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000267s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000358s ]
+
+[ 2016-07-25T00:10:09+08:00 ] 10.240.0.136 /cyBusAdmin/index.php/Admin/salesticket/sales.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000176s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000085s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000154s ]
+SQL: SHOW COLUMNS FROM `bus_corder` [ RunTime:0.0016s ]
+NOTIC: [8] Undefined index: clientId /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SalesticketController.class.php 第 16 行.
+NOTIC: [8] Undefined index: clientPhone /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SalesticketController.class.php 第 22 行.
+NOTIC: [8] Undefined index: type /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SalesticketController.class.php 第 28 行.
+NOTIC: [8] Undefined index: ticrand /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SalesticketController.class.php 第 34 行.
+SQL: SELECT * FROM `bus_corder` LIMIT 0,10   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bus_corder` LIMIT 1   [ RunTime:0.0002s ]
+
+[ 2016-07-25T00:10:12+08:00 ] 10.240.1.12 /cyBusAdmin/index.php/Admin/salesticket/sales.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000049s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000359s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000227s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000305s ]
+SQL: SHOW COLUMNS FROM `bus_corder` [ RunTime:0.0013s ]
+NOTIC: [8] Undefined index: clientId /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SalesticketController.class.php 第 16 行.
+NOTIC: [8] Undefined index: clientPhone /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SalesticketController.class.php 第 22 行.
+NOTIC: [8] Undefined index: type /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SalesticketController.class.php 第 28 行.
+NOTIC: [8] Undefined index: ticrand /home/ubuntu/workspace/cyBusAdmin/cyBus/Admin/Controller/SalesticketController.class.php 第 34 行.
+SQL: SELECT * FROM `bus_corder` LIMIT 80,10   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bus_corder` LIMIT 1   [ RunTime:0.0001s ]
+
