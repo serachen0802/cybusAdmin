@@ -14,13 +14,13 @@
     <script type="text/javascript">
         var url;
         //新增
-        function newUser(){
+        function newDate(){
             $('#dlg').dialog('open').dialog('setTitle','新增班次');
             $('#fm').form('clear');
             url='{:U('Busdate/insert')}';
         }
         //修改
-        function editUser(){
+        function editDate(){
             var row = $('#dg').datagrid('getSelected');
             console.log(row.did);
             if (row){
@@ -29,7 +29,8 @@
                 url = '{:U('Busdate/edit')}?id=' + row.did;
             }
         }
-        function saveUser(){
+        //儲存
+        function saveDate(){
             $('#fm').form('submit',{
                 url: url,
                 onSubmit: function(){
@@ -37,7 +38,6 @@
                 },
                 success: function(result){
                     console.log(result);
-                   // var result = eval('('+result+')');
                     if (result.errorMsg){
                         $.messager.show({
                             title: 'Error',
@@ -51,7 +51,7 @@
             });
         }
         //刪除資料
-        function destroyUser(){
+        function destroyDate(){
             var row = $('#dg').datagrid('getSelected');
             if (row){
                 $.messager.confirm('Confirm','確定要刪除這筆資料嗎？',function(r){
@@ -62,7 +62,6 @@
                                 $('#dg').datagrid('reload'); 
                                   // reload the user data
                             } else {
-
                                 $.messager.show({    // show error message
                                     title: 'Error',
                                     msg: result//.errorMsg
@@ -86,22 +85,8 @@
         function clf(){
             $('#shfm').form('clear');
              $('#dg').datagrid('load',{
-             //    search_name:"";
-             //    search_number:"";
-             //    search_address:"";
              });
         }
-
-
-        //圖片格式
-        function formatPicture(val,row){
-            if (val!=""){
-                return '<a href="images/'+ val + '" target="_blank"><img src="images/' + val + '" style="max-width:70px; max-height:70px;"></a>';
-            }else{
-                return '無'
-            }
-        }  
-
         //日期格式調整
         function myformatter(date){
             var y = date.getFullYear();
@@ -113,24 +98,10 @@
         //右側關閉時，清空查詢欄位
 		function searchopen(){
 			$('#cc').layout('expand','east');
-
-
-
-
-/* 	        $('#div_eastpanal').panel();
-	        $('#div_eastpanal').panel({
-	            onCollapse: function () {
-	                SearchClear();
-	                Query();
-	            },
-	            onExpand: function () {
-
-	            }
-	        }); */	
 		}
 
+        //客運班次資料
         $(function(){
-            //店家資料
             $('#dg').datagrid({
                 url:'{:U('Busdate/busdate')}',
                 toolbar:'#toolbar',
@@ -144,19 +115,16 @@
                     {field:'sid',title:'車次編號',width:100,halign:'center'},
                     {field:'date',title:'日期',width:180,halign:'center',align:'center'},
                     {field:'time',title:'時間',width:180,halign:'center',align:'center'},
-                // ]],
-                // columns:[[
+
                     {field:'last_edit',title:'最後修改時間',width:150 ,halign:'center'},
                     {field:'last_editor',title:'最後修改者',width:120 ,halign:'center'},
                     {field:'remark',title:'備註',width:120,halign:'center'}                                                                       
                 ]]
             });
         })
-        // <script language="javascript">
-                    
+    //設定新增班次日期選擇器格式
     $(document).ready(function(){
       $("#datebox1").datebox({
-         
         formatter:function(date){
           var y=date.getFullYear();
           var m=date.getMonth()+1;
@@ -183,6 +151,7 @@
                     }     
         });
       });
+    //   設定搜尋日期選擇器格式
     $(document).ready(function(){
           $("#datebox2").datebox({
              
@@ -202,22 +171,19 @@
                         
 
     </script>
-
 <div id="cc" class="easyui-layout" data-options="fit:true">
-
     <div data-options="region:'center'" style="padding:5px;background:#eee;">
-
-    <table id="dg" class="easyui-datagrid"></table>
+        <table id="dg" class="easyui-datagrid"></table>
 <!-- 功能按鈕 -->
     <div id="toolbar">
-  	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">新增</a>
-  	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">編輯</a>
-  	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">刪除</a>
+  	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newDate()">新增</a>
+  	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editDate()">編輯</a>
+  	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyDate()">刪除</a>
   	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="searchopen()">查詢</a>
     </div> 
 <!-- 編輯popup視窗 -->
     <div id="dlg" class="easyui-dialog" style="width:880px;height:450px;padding:10px 20px" closed="true" buttons="#dlg-buttons" modal="true" fit="true">
-        <!-- <div class="ftitle">資料編輯修改</div> -->
+       
 <!-- 新增/編輯form -->
         <form id="fm" method="post" novalidate>
         	<table>
@@ -252,8 +218,8 @@
     </div>
 <!-- 新增/編輯popup視窗功能按鈕 -->
     <div id="dlg-buttons">
-        <a class="easyui-linkbutton" iconCls="icon-ok" onclick="saveUser()">儲存</a>
-        <!-- <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">取消</a> -->
+        <a class="easyui-linkbutton" iconCls="icon-ok" onclick="saveDate()">儲存</a>
+         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">取消</a> 
     </div>
 </div>
 <!-- 搜尋條件 -->
@@ -277,7 +243,6 @@
                         <input name="date" style="width:175px;" class="easyui-datebox" id="datebox2">
                     </td>
                 </tr>  
-
                 <tr>						            
                     <td class="row_title"><label>時間：</label></td>
                     <td class="row_content">						           
@@ -329,7 +294,6 @@
             text-align : right;
             width:120px;
             height:40px;
-            /* vertical-align: top; */
         }
     </style>
     <style scoped="scoped">

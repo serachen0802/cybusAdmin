@@ -11,44 +11,7 @@
 </head>
 <body>
     <script type="text/javascript">
-        var url;
-        //新增
-        function newUser(){
-            $('#dlg').dialog('open').dialog('setTitle','新增班次');
-            $('#fm').form('clear');
-            // url='<?php echo U('Index/inse');?>';
-        }
-        //修改
-        function editUser(){
-            var row = $('#dg').datagrid('getSelected');
-            console.log(row.store_id);
-            if (row){
-                $('#dlg').dialog('open').dialog('setTitle','編輯班次');
-                $('#fm').form('load',row);
-                // url = '<?php echo U('Index/edit');?>?id=' + row.store_id;
-            }
-        }
-        function saveUser(){
-            $('#fm').form('submit',{
-                url: url,
-                onSubmit: function(){
-                    return $(this).form('validate');
-                },
-                success: function(result){
-                    console.log(result);
-                   // var result = eval('('+result+')');
-                    if (result.errorMsg){
-                        $.messager.show({
-                            title: 'Error',
-                            msg: result.errorMsg
-                        });
-                    } else {
-                        $('#dlg').dialog('close');     // close the dialog
-                        $('#dg').datagrid('reload');    // reload the user data
-                    }
-                }
-            });
-        }
+       
         //搜尋
         function searchf(){
             $('#dg').datagrid('load',{
@@ -57,30 +20,12 @@
                 end:$('input[name="end"]').val(),
                 date:$('input[name="date"]').val(),
             });
-
         }
         //清除
         function clf(){
             $('#shfm').form('clear');
              $('#dg').datagrid('load',{
              });
-        }
-
-        //圖片格式
-        function formatPicture(val,row){
-            if (val!=""){
-                return '<a href="images/'+ val + '" target="_blank"><img src="images/' + val + '" style="max-width:70px; max-height:70px;"></a>';
-            }else{
-                return '無'
-            }
-        }  
-
-        //日期格式調整
-        function myformatter(date){
-            var y = date.getFullYear();
-            var m = date.getMonth()+1;
-            var d = date.getDate();
-            return y+'/'+(m<10?('0'+m):m)+'/'+(d<10?('0'+d):d);
         }
 
         //右側關閉時，清空查詢欄位
@@ -107,7 +52,6 @@
                 ]],
                 columns:[[
                     {field:'seated',title:'剩餘座位',width:500,halign:'center'},
-                                                                               
                 ]]
             });
         })
@@ -138,49 +82,12 @@
     <table id="dg" class="easyui-datagrid"></table>
 <!-- 功能按鈕 -->
     <div id="toolbar">
-  	    <!--<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">新增</a>-->
-  	    <!--<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">編輯</a>-->
-  	    <!--<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">刪除</a>-->
   	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="searchopen()">查詢</a>
     </div> 
 <!-- 編輯popup視窗 -->
     <div id="dlg" class="easyui-dialog" style="width:880px;height:450px;padding:10px 20px" closed="true" buttons="#dlg-buttons" modal="true" fit="true">
-        <!-- <div class="ftitle">資料編輯修改</div> -->
-<!-- 新增/編輯form -->
-        <form id="fm" method="post" novalidate>
-        	<table>
-        		<tr class="row">
-        			<td class="row_title"><label>車次編號：</label></td>
-        			<td class="row_content">
-		                <input name="store_name" style="width:400px;" class="easyui-validatebox textbox" required>
-					</td>
-        		</tr>
-        		<tr class="row">
-        			<td class="row_title"><label>日期：</label></td>
-        			<td class="row_content">
-		                <input name="tax_id" style="width:400px;" class="easyui-validatebox textbox">
-					</td>
-        		</tr>
-                <tr class="row">
-                    <td class="row_title"><label>時間：</label></td>
-                    <td class="row_content">
-                        <input name="branch_id" style="width:400px;" class="easyui-validatebox textbox">
-                    </td>
-                </tr>
-        		<tr class="row">
-        			<td class="row_title"><label>備註：</label></td>
-        			<td class="row_content">
-		                <input name="remark" class="easyui-textbox textbox" value="" data-options="multiline:true" style="width:400px;height:75px">
-					</td>
-        		</tr>       		 		        		        		       		         		
-        	</table>
-        </form>
     </div>
-<!-- 新增/編輯popup視窗功能按鈕 -->
-    <div id="dlg-buttons">
-        <a class="easyui-linkbutton" iconCls="icon-ok" onclick="saveUser()">儲存</a>
-        <!-- <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">取消</a> -->
-    </div>
+
 </div>
 <!-- 搜尋條件 -->
    <div id="div_eastpanal" data-options="region:'east',title:'搜尋條件',split:true,collapsed:true" style="width:340px;">
@@ -192,32 +99,11 @@
 	    	<form id="shfm" method="post" novalidate　style="padding-top:5px;">
 	        <table>
 	            <tr>						            
-	                	<td class="row_title"><label>班次編號：</label></td>
-	                	<td class="row_content">						           
-	                		<input name="did" style="width:175px;" class="easyui-validatebox textbox">
-						</td>
+                	<td class="row_title"><label>班次編號：</label></td>
+                	<td class="row_content">						           
+                		<input name="did" style="width:175px;" class="easyui-validatebox textbox">
+    				</td>
 	            </tr>  
-	     <!--       <tr>						            -->
-	     <!--           	<td class="row_title"><label>起站：</label></td>-->
-	     <!--           	<td class="row_content">						           -->
-	     <!--           		<input name="start" style="width:175px;" class="easyui-validatebox textbox">-->
-						<!--</td>-->
-	     <!--       </tr>-->
-	     <!--       <tr>						            -->
-	     <!--           	<td class="row_title"><label>迄站：</label></td>-->
-	     <!--           	<td class="row_content">						           -->
-	     <!--           		<input name="end" style="width:175px;" class="easyui-validatebox textbox">-->
-						<!--</td>-->
-	     <!--       </tr>-->
-	     <!--       <tr>						            -->
-	     <!--           	<td class="row_title"><label>日期：</label></td>-->
-	     <!--           	<td class="row_content">						           -->
-	     <!--           		<input name="date" style="width:175px;" class="easyui-datebox" id="datebox2">-->
-						<!--</td>-->
-	     <!--       </tr>  -->
-	            
-	     
-	           	    		
         		</table>
 	    	</form>
 	</div>
@@ -257,7 +143,6 @@
             text-align : right;
             width:120px;
             height:40px;
-            /* vertical-align: top; */
         }
     </style>
     <style scoped="scoped">

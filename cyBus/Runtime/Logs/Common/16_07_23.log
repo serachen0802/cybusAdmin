@@ -1,0 +1,48 @@
+[ 2016-07-23T09:38:19+08:00 ] 10.240.0.136 /cyBusAdmin/index.php/Index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000035s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000370s ]
+ERR: 无法加载模块:Index
+
+[ 2016-07-23T09:41:45+08:00 ] 10.240.1.12 /cyBusAdmin/index.php/Index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000294s ]
+ERR: 无法加载模块:Index
+
+[ 2016-07-23T09:41:48+08:00 ] 10.240.1.12 /cyBusAdmin/index.php/Index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000238s ]
+ERR: 无法加载模块:Index
+
+[ 2016-07-23T13:33:46+08:00 ] 10.240.1.16 /cyBusAdmin/Public/jquery-easyui/themes/%7B$_COOKIE.easyuiThemeName%7Cdefault=
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000129s ]
+ERR: 无法加载模块:Public
+
+[ 2016-07-23T13:35:14+08:00 ] 10.240.0.157 /cyBusAdmin/Public/jquery-easyui/themes/%7B$_COOKIE.easyuiThemeName%7Cdefault=
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000274s ]
+ERR: 无法加载模块:Public
+
+[ 2016-07-23T13:37:00+08:00 ] 10.240.0.33 /cyBusAdmin/Public/jquery-easyui/themes/%7B$_COOKIE.easyuiThemeName%7Cdefault=
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000192s ]
+ERR: 无法加载模块:Public
+
+[ 2016-07-23T13:38:02+08:00 ] 10.240.1.12 /cyBusAdmin/Public/jquery-easyui/themes/%7B$_COOKIE.easyuiThemeName%7Cdefault=
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000160s ]
+ERR: 无法加载模块:Public
+
+[ 2016-07-23T13:38:22+08:00 ] 10.240.0.157 /cyBusAdmin/Public/jquery-easyui/themes/%7B$_COOKIE.easyuiThemeName%7Cdefault=
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000326s ]
+ERR: 无法加载模块:Public
+

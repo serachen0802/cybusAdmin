@@ -76,7 +76,7 @@ class SalesticketController extends Controller
         $data['ticrand'] =substr(strtotime($date),-7).substr($_POST['clientId'],-3);
         $data['total'] = $price*$_POST['number'];
         $data['orderTime'] = date('Y-m-d H:i:s');
-        $data['buyfor'] = 'admin';
+        $data['buyfor'] = session('username');
         $order->add($data);
         $this->ajaxReturn($data);
   		}else{
@@ -86,10 +86,8 @@ class SalesticketController extends Controller
     public function edit(){
     	$order = M('Corder');
     	$id['oid']=$_GET['id'];
-		
 		$data = $order->create();
-					
-		// $order-> where($id)-> save($data);
+		$data['buyfor'] = session('username');
 		$this-> ajaxReturn($data);
     }
     public function remove(){

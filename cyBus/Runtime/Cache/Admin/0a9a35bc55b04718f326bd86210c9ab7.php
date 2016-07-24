@@ -14,13 +14,13 @@
     <script type="text/javascript">
         var url;
         //新增
-        function newUser(){
+        function newNews(){
             $('#dlg').dialog('open').dialog('setTitle','新增最新消息');
             $('#fm').form('clear');
             url='<?php echo U('News/insert');?>';
         }
         //修改
-        function editUser(){
+        function editNews(){
             var row = $('#dg').datagrid('getSelected');
             console.log(row.nid);
             if (row){
@@ -29,7 +29,7 @@
                 url = '<?php echo U('News/edit');?>?id=' + row.nid;
             }
         }
-        function saveUser(){
+        function saveNews(){
             $('#fm').form('submit',{
                 url: url,
                 onSubmit: function(){
@@ -37,7 +37,6 @@
                 },
                 success: function(result){
                     console.log(result);
-                   // var result = eval('('+result+')');
                     if (result.errorMsg){
                         $.messager.show({
                             title: 'Error',
@@ -45,13 +44,13 @@
                         });
                     } else {
                         $('#dlg').dialog('close');     // close the dialog
-                        $('#dg').datagrid('reload');    // reload the user data
+                        $('#dg').datagrid('reload');    // reload the News data
                     }
                 }
             });
         }
         //刪除資料
-        function destroyUser(){
+        function destroyNews(){
             var row = $('#dg').datagrid('getSelected');
             if (row){
                 $.messager.confirm('Confirm','確定要刪除這筆資料嗎？',function(r){
@@ -60,9 +59,8 @@
                             console.log(result);
                             if (result == 1){
                                 $('#dg').datagrid('reload'); 
-                                  // reload the user data
+                                  // reload the News data
                             } else {
-
                                 $.messager.show({    // show error message
                                     title: 'Error',
                                     msg: result//.errorMsg
@@ -73,7 +71,6 @@
                 });
             }
         }
-
         //搜尋
         function searchf(){
             $('#dg').datagrid('load',{
@@ -81,7 +78,6 @@
                 date:'%'+$.trim($('input[name="date"]').val()) + '%',
                 newsed:'%'+$.trim($('input[name="newsed"]').val())+'%',
             });
-
         }
         //清除
         function clf(){
@@ -102,18 +98,6 @@
 		function searchopen(){
 			$('#cc').layout('expand','east');
 		}
-		
-        // $(function () {
-        // var editor =
-        // CKEDITOR.replace('body',
-        // {
-        //     //允許所有使用者輸入的內容
-        //     allowedContent: true;
-        // });
- 
-        //  });
-
-
         $(function(){
             //店家資料
             $('#dg').datagrid({
@@ -130,7 +114,6 @@
                     {field:'title',title:'標題',width:150,halign:'center'},
                     {field:'news',title:'最新消息',width:550,halign:'center'},
                     {field:'newsed',title:'發佈人',width:100,halign:'center',align:'center'},
-                                                                   
                 ]]
             });
         })
@@ -160,9 +143,9 @@
     <table id="dg" class="easyui-datagrid"></table>
 <!-- 功能按鈕 -->
     <div id="toolbar">
-  	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">新增</a>
-  	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">編輯</a>
-  	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">刪除</a>
+  	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newNews()">新增</a>
+  	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editNews()">編輯</a>
+  	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyNews()">刪除</a>
   	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="searchopen()">查詢</a>
     </div> 
 <!-- 編輯popup視窗 -->
@@ -192,8 +175,8 @@
     </div>
 <!-- 新增/編輯popup視窗功能按鈕 -->
     <div id="dlg-buttons">
-        <a class="easyui-linkbutton" iconCls="icon-ok" onclick="saveUser()">儲存</a>
-        <!-- <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">取消</a> -->
+        <a class="easyui-linkbutton" iconCls="icon-ok" onclick="saveNews()">儲存</a>
+         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">取消</a> 
     </div>
 </div>
 <!-- 搜尋條件 -->
@@ -262,7 +245,6 @@
             text-align : right;
             width:120px;
             height:40px;
-            /* vertical-align: top; */
         }
     </style>
     <style scoped="scoped">

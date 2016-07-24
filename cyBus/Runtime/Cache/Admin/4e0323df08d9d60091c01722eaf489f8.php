@@ -14,24 +14,21 @@
     <script type="text/javascript">
         var url;
         //新增
-        function newUser(){
+        function newSchedule(){
             $('#dlg').dialog('open').dialog('setTitle','新增路線');
             $('#fm').form('clear');
             url='<?php echo U('BusSchedule/insert');?>';
-            
         }
-        
         //修改
-        function editUser(){
+        function editSchedule(){
             var row = $('#dg').datagrid('getSelected');
-            console.log(row.store_id);
             if (row){
                 $('#dlg').dialog('open').dialog('setTitle','編輯路線');
                 $('#fm').form('load',row);
                 url = '<?php echo U('BusSchedule/edit');?>?id=' + row.sid;
             }
         }
-        function saveUser(){
+        function saveSchedule(){
             $('#fm').form('submit',{
                 url: url,
                 onSubmit: function(){
@@ -47,12 +44,11 @@
                         });
                     } else {
                         $('#dlg').dialog('close');     // close the dialog
-                        $('#dg').datagrid('reload');    // reload the user data
+                        $('#dg').datagrid('reload');    // reload the Schedule data
                     }
                 }
             });
         }
-        
         //刪除資料
     function destroy(){
             var row = $('#dg').datagrid('getSelected');
@@ -63,8 +59,7 @@
                             console.log(result);
                             if (result == 1){
                                 $('#dg').datagrid('reload'); 
-                                
-                                   // reload the user data
+                                   // reload the Schedule data
                             } else {
 
                                 $.messager.show({    // show error message
@@ -77,7 +72,6 @@
                 });
             }
         }
-
         //搜尋
         function searchf(){
             $('#dg').datagrid('load',{
@@ -85,7 +79,6 @@
                 start:'%'+$.trim($('input[name="start"]').val()) + '%',
                 end:'%'+$.trim($('input[name="end"]').val())+'%',
             });
-
         }
         //清除
         function clf(){
@@ -113,17 +106,6 @@
         //右側關閉時，清空查詢欄位
 		function searchopen(){
 			$('#cc').layout('expand','east');
-
-/* 	        $('#div_eastpanal').panel();
-	        $('#div_eastpanal').panel({
-	            onCollapse: function () {
-	                SearchClear();
-	                Query();
-	            },
-	            onExpand: function () {
-
-	            }
-	        }); */	
 		}
         
         $(function(){
@@ -139,8 +121,6 @@
                     {field:'sid',title:'車次編號',width:100,halign:'center',align:'center'},
                     {field:'start',title:'起站',width:180,halign:'center',align:'center'},
                     {field:'end',title:'迄站',width:180,halign:'center',align:'center'},
-                // ]],
-                // columns:[[
                     {field:'oneprice',title:'全票',width:120,halign:'center',align:"center"},
                     {field:'halffare',title:'半票',width:120,halign:'center',align:"center"},
                     {field:'backandforth',title:'來回票',width:120,halign:'center',align:"center"},
@@ -148,28 +128,19 @@
                 ]]
              });
         })
-
-
     </script>
-
 <div id="cc" class="easyui-layout" data-options="fit:true">
-
     <div data-options="region:'center'" style="padding:5px;background:#eee;">
-
     <table id="dg" class="easyui-datagrid"></table>
 <!-- 功能按鈕 -->
     <div id="toolbar">
-  	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">新增</a>
-  	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">編輯</a>
+  	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newSchedule()">新增</a>
+  	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editSchedule()">編輯</a>
   	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroy()">刪除</a>
   	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="searchopen()">查詢</a>
-  	    <!--<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="">匯入</a>-->
-  	    <!-- <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-redo" plain="true" onclick="">匯出</a> -->
-  	    <!--<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="">匯入範例下載</a>-->
     </div> 
 <!-- 編輯popup視窗 -->
     <div id="dlg" class="easyui-dialog" style="width:880px;height:450px;padding:10px 20px" closed="true" buttons="#dlg-buttons" modal="true" fit="true">
-        <!-- <div class="ftitle">資料編輯修改</div> -->
 <!-- 新增/編輯form -->
         <form id="fm" method="post" novalidate>
         	<table>
@@ -220,8 +191,8 @@
     </div>
 <!-- 新增/編輯popup視窗功能按鈕 -->
     <div id="dlg-buttons">
-        <a class="easyui-linkbutton" iconCls="icon-ok" onclick="saveUser()">儲存</a>
-        <!-- <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">取消</a> -->
+        <a class="easyui-linkbutton" iconCls="icon-ok" onclick="saveSchedule()">儲存</a>
+         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">取消</a> 
     </div>
 </div>
 <!-- 搜尋條件 -->
@@ -233,30 +204,28 @@
 	    	</div>
 	    	<form id="shfm" method="post" novalidate　style="padding-top:5px;">
 	        <table>
-	             <tr>						            
-	                	<td class="row_title"><label>車次編號：</label></td>
-	                	<td class="row_content">						           
-	                		<input name="sid" style="width:175px;" class="easyui-validatebox textbox">
-						</td>
-	                </tr>  
-	         <tr>						            
-	                	<td class="row_title"><label>起站：</label></td>
-	                	<td class="row_content">						           
-	                		<input name="start" style="width:175px;" class="easyui-validatebox textbox">
-						</td>
-	        </tr>  
-	          <tr>						            
-	                	<td class="row_title"><label>迄站：</label></td>
-	                	<td class="row_content">						           
-	                		<input name="end" style="width:175px;" class="easyui-validatebox textbox">
-						</td>
-	            </tr>  
-	     	
-        		</table>
+                <tr>						            
+                    <td class="row_title"><label>車次編號：</label></td>
+                    <td class="row_content">						           
+                        <input name="sid" style="width:175px;" class="easyui-validatebox textbox">
+                    </td>
+                </tr>  
+                <tr>						            
+                    <td class="row_title"><label>起站：</label></td>
+                    <td class="row_content">						           
+                        <input name="start" style="width:175px;" class="easyui-validatebox textbox">
+                    </td>
+                </tr>  
+                 <tr>						            
+                    <td class="row_title"><label>迄站：</label></td>
+                    <td class="row_content">						           
+                        <input name="end" style="width:175px;" class="easyui-validatebox textbox">
+                    </td>
+                </tr>  
+            </table>
 	    	</form>
-	</div>
-</div>
-
+    	</div>
+    </div>
 <!-- 編輯視窗、搜尋 form style調整 -->    
     <style type="text/css">
         #fm{
@@ -291,7 +260,6 @@
             text-align : right;
             width:120px;
             height:40px;
-            /* vertical-align: top; */
         }
     </style>
     <style scoped="scoped">

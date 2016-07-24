@@ -53,7 +53,7 @@ class BusdateController extends Controller
         $Busdate=M('date');
         $data = $Busdate->create();
         $data['last_edit']=date('Y-m-d H:i:s');
-        $data['last_editor'] = 'admin';
+        $data['last_editor'] = session('username');
         $Busdate->add($data);
         $this->ajaxReturn($data);
   		}else{
@@ -65,7 +65,7 @@ class BusdateController extends Controller
 		$id['did']=$_GET['id'];
 		
 		$data = $Busdate->create();
-					
+		$data['last_editor'] = session('username');
 		$Busdate-> where($id)-> save($data);
 		$this-> ajaxReturn($data);
 	  }

@@ -30,19 +30,12 @@
         <form id="ff" method="post" action="">
             <table cellpadding="5">
                 <tr>
-                    <td>帳號:</td>
-                    <td><input class="easyui-textbox" type="text" name="user" data-options="required:true"></input></td>
+                    <td>已登出</td>
                 </tr>
-                <tr>
-                    <td>密碼:</td>
-                    <td><input class="easyui-textbox" type="password" name="pwd" data-options="required:true"></input></td>
-                </tr>
-        
             </table>
         </form>
         <div style="text-align:center;padding:5px">
-            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">確認</a>
-            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">清除</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">返回登入頁</a>
         </div>
         </div>
     </div>
@@ -50,30 +43,9 @@
     <script>
     
         function submitForm(){
-            var url= '<?php echo U('Login/check');?>';
-             $('#ff').form('submit',{
-                url:url,
-                // return $(this).form('validate');
-                success: function(result){
-                    console.log(result);
-                    if(result){
-                        window.location.assign("https://lab-sera-chen.c9users.io/cyBusAdmin/index.php/Admin/Index/index");  // reload the user data
-                        JSON.parse(result,function(k,v){
-                            console.log(v);
-                            if(k=="username"){
-                            alert('登入成功 hi!   '+ v);
-                            }
-                        });                       
-                    }else{
-                        alert('登入失敗');
-                        // window.location.assign("https://lab-sera-chen.c9users.io/cyBusAdmin/index.php/Admin/Index/login");
-                    }
-                }
-            });
+            window.location.assign("https://lab-sera-chen.c9users.io/cyBusAdmin/index.php/Admin/Index/login");  // reload the user data
         }
-        function clearForm(){
-            $('#ff').form('clear');
-        }
+        
     </script>
 
 </body>

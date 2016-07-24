@@ -3,8 +3,6 @@ namespace Admin\Controller;
 
 use Think\Controller;
 
-// use Think\Upload;
-
 class LoginController extends Controller
 {
 public function check(){
@@ -16,20 +14,17 @@ public function check(){
     $result= $member-> where($con)->select();
     
     if($result){
-    session('mid',$result[0]['mid']);
-    $data['mid']=session('mid');
-    session('username',$result[0]['username']);
-    $data['username']=session('username');
-
-    $this->success('登入成功', U('Index/index'));
+        session('mid',$result[0]['mid']);
+         $data['mid']=session('mid');
+        session('username',$result[0]['username']);
+         $data['username']=session('username');
+        cookie('uname',$data['username']);
+        $this->ajaxreturn($data);
     }else{
-         $this->error('登入失败');
+        $this->ajaxreturn(0);
+        }
     }
+}
     
-}
-
-
-}
-   //  $this->redirect("Index/index");
 ?>
 

@@ -14,13 +14,13 @@
     <script type="text/javascript">
         var url;
         //新增
-        function newUser(){
+        function newSales(){
             $('#dlg').dialog('open').dialog('setTitle','代購票券');
             $('#fm').form('clear');
             url='<?php echo U('Salesticket/insert');?>';
         }
         //修改
-        function editUser(){
+        function editSales(){
             var row = $('#dg').datagrid('getSelected');
             console.log(row.oid);
             if (row){
@@ -29,7 +29,7 @@
                 url = '<?php echo U('Salesticket/edit');?>?id=' + row.oid;
             }
         }
-        function saveUser(){
+        function saveSales(){
             $('#fm').form('submit',{
                 url: url,
                 onSubmit: function(){
@@ -37,7 +37,6 @@
                 },
                 success: function(result){
                     console.log(result);
-                   // var result = eval('('+result+')');
                     if (result.errorMsg){
                         $.messager.show({
                             title: 'Error',
@@ -45,7 +44,7 @@
                         });
                     } else {
                         $('#dlg').dialog('close');     // close the dialog
-                        $('#dg').datagrid('reload');    // reload the user data
+                        $('#dg').datagrid('reload');    // reload the Sales data
                     }
                 }
             });
@@ -60,7 +59,7 @@
                             console.log(result);
                             if (result == 1){
                                 $('#dg').datagrid('reload'); 
-                                  // reload the user data
+                                  // reload the Sales data
                             } else {
 
                                 $.messager.show({    // show error message
@@ -90,15 +89,6 @@
              $('#dg').datagrid('load',{
              });
         }
-        //圖片格式
-        function formatPicture(val,row){
-            if (val!=""){
-                return '<a href="images/'+ val + '" target="_blank"><img src="images/' + val + '" style="max-width:70px; max-height:70px;"></a>';
-            }else{
-                return '無'
-            }
-        }  
-
         //日期格式調整
         function myformatter(date){
             var y = date.getFullYear();
@@ -110,17 +100,6 @@
         //右側關閉時，清空查詢欄位
 		function searchopen(){
 			$('#cc').layout('expand','east');
-
-/* 	        $('#div_eastpanal').panel();
-	        $('#div_eastpanal').panel({
-	            onCollapse: function () {
-	                SearchClear();
-	                Query();
-	            },
-	            onExpand: function () {
-
-	            }
-	        }); */	
 		}
         
         $(function(){
@@ -138,7 +117,6 @@
                     {field:'did',title:'班次編號',width:80,halign:'center',align:'center'},
                     {field:'clientname',title:'購票姓名',width:100,halign:'center',align:'center'},
                     {field:'clientid',title:'身分證字號',width:130,halign:'center',align:'center'},
-                    
                 ]],
                 columns:[[
                     {field:'clientphone',title:'電話',width:130,halign:'center',align:'center'},
@@ -163,13 +141,10 @@
     <table id="dg" class="easyui-datagrid"></table>
 <!-- 功能按鈕 -->
     <div id="toolbar">
-  	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">新增</a>
-  	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">編輯</a>
+  	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newSales()">新增</a>
+  	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editSales()">編輯</a>
   	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroy()">取消</a>
   	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="searchopen()">查詢</a>
-  	    <!--<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="">匯入</a>-->
-  	    <!-- <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-redo" plain="true" onclick="">匯出</a> -->
-  	    <!--<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="">匯入範例下載</a>-->
     </div> 
 <!-- 編輯popup視窗 -->
     <div id="dlg" class="easyui-dialog" style="width:880px;height:450px;padding:10px 20px" closed="true" buttons="#dlg-buttons" modal="true" fit="true">
@@ -244,8 +219,8 @@
     </div>
 <!-- 新增/編輯popup視窗功能按鈕 -->
     <div id="dlg-buttons">
-        <a class="easyui-linkbutton" iconCls="icon-ok" onclick="saveUser()">儲存</a>
-        <!-- <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">取消</a> -->
+        <a class="easyui-linkbutton" iconCls="icon-ok" onclick="saveSales()">儲存</a>
+         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">取消</a> 
     </div>
 </div>
 <!-- 搜尋條件 -->
@@ -326,7 +301,6 @@
             text-align : right;
             width:120px;
             height:40px;
-            /* vertical-align: top; */
         }
     </style>
     <style scoped="scoped">

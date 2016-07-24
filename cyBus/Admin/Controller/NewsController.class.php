@@ -42,7 +42,7 @@ class NewsController extends Controller
     	$news=M('news');
         $data = $news->create();
         $data['date']=date('Y-m-d');
-        $data['newsed'] = 'admin';
+        $data['newsed'] = session('username');
         $news->add($data);
         $this->ajaxReturn($data);
   	
@@ -52,7 +52,7 @@ class NewsController extends Controller
 		$id['nid']=$_GET['id'];
 		
 		$data = $news-> create();
-					
+		 $data['newsed'] = session('username');			
 		$news-> where($id)-> save($data);
 		$this-> ajaxReturn($data);
     }

@@ -15,16 +15,6 @@ class SearchticketController extends Controller
 		if($_POST['did']!=""){
             $searchdid = "WHERE did = ".$_POST['did'];
 		}
-// 		if($_POST['start']){
-// 		    $searchstart = "WHERE start = ".$_POST['start'];
-// 		}
-// 		if($_POST['end']){
-// 		    $searchend = "WHERE end = ".$_POST['end'];
-// 		}
-// 		if($_POST['date']){
-// 		    $searchdate = "WHERE date = ".$_POST['date'];
-// 		}
-        
         $db = $order->query(' SELECT *, (SELECT GROUP_CONCAT(seat) FROM bus_corder where 
         sid=bus_date.sid AND did=bus_date.did) AS Seated FROM bus_date
         INNER JOIN bus_schedule ON bus_date.sid=bus_schedule.sid '. $searchdid.$searchstart.$searchend.$searchdate); 
@@ -34,8 +24,7 @@ class SearchticketController extends Controller
 		$first = $pageSize*($page- 1); 
 		
 		// ThinkPHP 塞選陣列前幾筆
-        // $data = $data->limit($first,$pageSize);
-        
+
         // 原生 array_slice(陣列,從第幾筆開始,取幾筆)
         $result = array_slice($db, $first, $pageSize);
         $count = count($db);

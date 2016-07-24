@@ -1,4 +1,84 @@
-<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html> 
+<?php if (!defined('THINK_PATH')) exit(); session_start(); if(!isset($_COOKIE['uname'])){ ?>
+<!DOCTYPE html>
+<!-------------------------------------------------------------------------登入頁---------------------------------------------------------------->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>cyBus</title>
+	<script src="//cdn.ckeditor.com/4.4.4/standard/ckeditor.js"></script>
+	<link id="easyuiTheme" rel="stylesheet" type="text/css" href="/cyBusAdmin/Public/jquery-easyui/themes/<?php echo ((isset($_COOKIE["easyuiThemeName"]) && ($_COOKIE["easyuiThemeName"] !== ""))?($_COOKIE["easyuiThemeName"]):"default"); ?>/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/cyBusAdmin/Public/jquery-easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/cyBusAdmin/Public/jquery-easyui/themes/icon.css">
+    <script type="text/javascript" src="/cyBusAdmin/Public/jquery-easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="/cyBusAdmin/Public/jquery-easyui/jquery.easyui.min.js"></script>
+</head>
+<body>
+    <div data-options="region:'north',split:false,border:false" style="height:76px;background-color:#AFD6FF">
+    	<div style="height:40px; width:100%; background-color:#AFD6FF;">
+        	<div style="width:400px; height:40px;padding:10px 0 0 10px; background-color:#AFD6FF; float:left;" id="wt_logo">
+			
+				<img alt="" src="/cyBusAdmin/Public/images/cybus.png" style="height:60px">
+        	</div>
+            <div style="width:200px; height:40px;padding:10px 10px 0 10px; background-color:#AFD6FF; float:right;" id="wt_usrinfo">
+            	<span style="color:blue;">使用者您好！</span>
+            </div>
+        </div>
+    <div style="margin:20px 0;"></div>
+    <div  title="登入" style="display: block;width: 400px;position: fixed;top: 35%;left: 35%;">
+        <div style="padding:10px 60px 20px 60px">
+        <form id="ff" method="post" action="">
+            <table cellpadding="5">
+                <tr>
+                    <td>帳號:</td>
+                    <td><input class="easyui-textbox" type="text" name="user" data-options="required:true"></input></td>
+                </tr>
+                <tr>
+                    <td>密碼:</td>
+                    <td><input class="easyui-textbox" type="password" name="pwd" data-options="required:true"></input></td>
+                </tr>
+            </table>
+        </form>
+        <div style="text-align:center;padding:5px">
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">確認</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">清除</a>
+        </div>
+        <div>帳號:aaa123   密碼:123</div>
+        </div>
+    </div>
+    </div>
+    <script>
+    // 判斷登入狀態
+        function submitForm(){
+            var url= '<?php echo U('Login/check');?>';
+             $('#ff').form('submit',{
+                url:url,
+                success: function(result){
+                    console.log(result);
+                    if(result){
+                        window.location.assign("https://lab-sera-chen.c9users.io/cyBusAdmin/index.php/Admin/Index/index");
+                        JSON.parse(result,function(k,v){
+                            console.log(v);
+                            if(k=="username"){
+                            alert('登入成功 hi!   '+ v);
+                            }
+                        });                       
+                    }else{
+                        alert('登入失敗');
+                    }
+                }
+            });
+        }
+        //清除
+        function clearForm(){
+            $('#ff').form('clear');
+        }
+    </script>
+</body>
+</html>
+<?php
+}else{ ?>
+<!DOCTYPE html>
+<!------------------------------------------------------------------------登入後的畫面---------------------------------------------------------------->
 <html>
 <head>
 <meta charset="utf-8"/>
@@ -20,7 +100,7 @@
     }
     function addPanel(name,url){
     	if($('#tt').tabs('exists',name)){
-    		$('#tt').tabs('select',name);  //不會重覆開啟
+    		$('#tt').tabs('select',name); 
     	}else{
     	    $('#tt').tabs('add',{
                 title: name,
@@ -38,9 +118,6 @@
         }
     }
 </script>
-<style>
-
-</style>
 </head>
 
 <body class="easyui-layout">
@@ -51,7 +128,9 @@
 				<img alt="" src="/cyBusAdmin/Public/images/cybus.png" style="height:60px">
         	</div>
             <div style="width:200px; height:40px;padding:10px 10px 0 10px; background-color:#AFD6FF; float:right;" id="wt_usrinfo">
-            	<span style="color:blue;">使用者您好！</span><a href="login.php" class="easyui-linkbutton" data-options="plain:false" onclick="javascript:window.open('index.html', '_self')">登出</a>
+            	<span style="color:blue;">
+            	   welcome! <?php echo ($_SESSION['username']); ?>
+           </span><a  class="easyui-linkbutton" data-options="plain:false" onclick="logout()">登出</a>
             </div>
         </div>
     	<div style="height:20px; width:100%; background-color:#AFD6FF;" id="wt_marquee">
@@ -64,7 +143,6 @@
 		        <ul style="list-style-type:none;">
 	                <li><a href="#" class="easyui-linkbutton" data-options="plain:true" onclick="javascript:addPanel('路線管理','busSchedule.html');"><span style="font-size:16px;">路線管理</span></a></li>
 	            	<li><a href="#" class="easyui-linkbutton" data-options="plain:true" onclick="javascript:addPanel('班次管理','busDate.html');"><span style="font-size:16px;">班次管理</span></a></li>
-                    <!--<li><a href="#" class="easyui-linkbutton" data-options="plain:true" onclick="javascript:addPanel('測試1','menu4.html');"><span style="font-size:16px;">測試1</span></a></li>-->
 	            </ul>
 	        </div>
 	        <div title="票劵管理" style="overflow:auto;padding:10px;">
@@ -76,22 +154,27 @@
 	        <div title="文章管理" style="overflow:auto;padding:10px;">
 		        <ul style="list-style-type:none;">
 					<li><a href="#" class="easyui-linkbutton" data-options="plain:true" onclick="javascript:addPanel('最新消息','news.html');"><span style="font-size:16px;">最新消息</span></a></li>
-					<!--<li><a href="#" class="easyui-linkbutton" data-options="plain:true" onclick="javascript:addPanel('訂票須知','knows.html');"><span style="font-size:16px;">訂票須知</span></a></li>-->
 				</ul>
 			</div>
-	       <!--  <div title="系統管理" style="padding:10px;">
-		        <ul style="list-style-type:none">
-	            	<li><a href="#" class="easyui-linkbutton" data-options="plain:true" onclick="javascript:addPanel('帳號管理','account.html');"><span style="font-size:16px;">帳號管理</span></a></li>
-	            	<li><a href="#" class="easyui-linkbutton" data-options="plain:true" onclick="javascript:addPanel('角色管理','character.html');"><span style="font-size:16px;">角色管理</span></a></li>
-	            	<li><a href="#" class="easyui-linkbutton" data-options="plain:true" onclick="javascript:addPanel('系統記錄','syslog.html');"><span style="font-size:16px;">系統記錄</span></a></li>
-	            </ul>
-			</div> -->
     	</div>
 	</div>
     <div data-options="region:'center'" style="padding:5px;background:#eee;" href="">
     	<div id="tt" class="easyui-tabs" border="true" data-options="tabWidth:160,fit:true">
     	</div>
-    	
     </div>
+    <script>
+    //清除session
+        function logout(){
+            var url= '<?php echo U('Index/logout');?>';
+            $.ajax({
+                url:url,
+                success: function(result){
+                    alert("確認後登出");
+                    window.location.reload();
+                    }
+                })
+             }
+</script>
 </body>
 </html>
+<?php }?>
