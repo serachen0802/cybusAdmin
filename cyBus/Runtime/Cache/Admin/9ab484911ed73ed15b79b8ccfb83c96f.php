@@ -72,6 +72,28 @@
                 });
             }
         }
+        
+        function destroyAll(){
+            var row = $('#dg').datagrid('getSelected');
+            
+                $.messager.confirm('Confirm','確定要刪除今日之前全部班次嗎？',function(r){
+                    if (r){
+                        $.post('<?php echo U('Busdate/removeAll');?>',function(result){
+                            console.log(result);
+                            if (result == 1){
+                                $('#dg').datagrid('reload'); 
+                                  // reload the user data
+                            } else {
+                                $.messager.show({    // show error message
+                                    title: 'Error',
+                                    msg: result//.errorMsg
+                                });
+                            }
+                        },'json');
+                    }
+                });
+            
+        }
 
         //搜尋
          function searchm(){
@@ -180,6 +202,8 @@
   	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editDate()">編輯</a>
   	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyDate()">刪除</a>
   	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="searchopen()">查詢</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyAll()">刪除今日以前之班次</a>
+  	    
     </div> 
 <!-- 編輯popup視窗 -->
     <div id="dlg" class="easyui-dialog" style="width:880px;height:450px;padding:10px 20px" closed="true" buttons="#dlg-buttons" modal="true" fit="true">

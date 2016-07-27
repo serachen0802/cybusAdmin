@@ -134,7 +134,7 @@
             </div>
         </div>
     	<div style="height:20px; width:100%; background-color:#AFD6FF;" id="wt_marquee">
-    		<marquee align="midden" scrollamount="1" behavior="scroll" direction="left" onMouseOver="this.stop()" onMouseOut="this.start()" color="#FF0000"><font color="#FF0000"> HI~~ </font></marquee>
+    		<marquee align="midden" scrollamount="1" behavior="scroll" direction="left" onMouseOver="this.stop()" onMouseOut="this.start()" color="#000080"><font color="#000080"> HI~~ <?php echo ($_SESSION['username']); ?></font></marquee>
     	</div>
     </div>
     <div data-options="region:'west',title:'功能選單',split:true" style="width:200px;">

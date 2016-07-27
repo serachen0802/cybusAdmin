@@ -81,5 +81,15 @@ class BusdateController extends Controller
 				$this->ajaxReturn(0);
 			}
 		}
+		//刪除今日以前全部資料
+	public function removeAll(){
+		$Busdate=M('date');
+		$today=date('Y-m-d');
+		// $today='2016-07-16';
+		$con['date']=array('lt',$today);
+		
+		$data=$Busdate->where($con)->delete();
+		$this->ajaxReturn(1);
+	}
 }
 ?>
